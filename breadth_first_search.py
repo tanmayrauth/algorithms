@@ -1,7 +1,9 @@
+from collections import deque
+
 def run( graph ):
     nodes  = graph.keys() 
     result = []
-    queue  = []
+    queue  = deque()
     discovered = [ False for _ in range(len(nodes)+1) ]
 
     # This loop is needed for handling graph with multiple components
@@ -17,7 +19,7 @@ def run( graph ):
 def bfs( graph, result, discovered, queue ):
     
     while queue:
-        node = queue.pop(0)
+        node = queue.popleft()
         result.append(node)
 
         for n in graph[node]:
